@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wachttijden</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    
+    <header name="wachttijden per gebied">
+        <h1 class="wachttijden per gebied">Wachttijden</h1>
+        <div id="waiting-times">
+            <!-- Waiting times will be populated here -->
+        </div>
+    </header>
+    <div class="button-container">
+        <button onclick="window.location.href='index.html'">Ga terug</button>
+    </div>
+
+    <script>
+        async function fetchWaitingTimes() {
+            try {
+                const response = await fetch('http://localhost:5000/api/attraction');
+                const data = await response.json();
+                populateWaitingTimes(data);
+            } catch (error) {
+                console.error('Error fetching waiting times:', error);
+            }
+        }
+
+               function populateWaitingTimes(data) {
+            const container = document.getElementById('waiting-times');
+            container.innerHTML = ''; // Clear existing content
+        
+            data.forEach(attraction => {
+                const waitTime = attraction.queueLength / attraction.queueSpeed;
+                const roundedWaitTime = Math.round(waitTime); // Round to the nearest whole number
+                const attractionElement = document.createElement('div');
+                const attractionTitle = document.createElement('p');
+                attractionTitle.textContent = `${attraction.name}: ${roundedWaitTime} minuten`;
+                attractionElement.appendChild(attractionTitle);
+        
+                container.appendChild(attractionElement);
+            });
+        }
+
+        // Fetch waiting times when the page loads
+        window.onload = fetchWaitingTimes;
+    </script>
 </body>
 </html>
