@@ -1,0 +1,48 @@
+/* Algemene stijlen */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    height: 100vh;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease; /* Voeg soepele transitie toe */
+    cursor: pointer;
+}
+
+/* Hover-effecten */
+.grid-item:hover img {
+    transform: scale(1.1); /* Vergroot de afbeelding */
+    z-index: 10;
+}
+
+.grid-item img:hover {
+    filter: saturate(1) contrast(1.2); /* Zorg dat de geselecteerde afbeelding helder wordt */
+}
+
+/* Maak de rest minder verzadigd wanneer je over een item gaat */
+.grid-container:hover .grid-item img {
+    filter: saturate(0.2); /* Verminder de saturatie van alle afbeeldingen */
+}
+
+.grid-container .grid-item img:hover {
+    filter: saturate(1) contrast(1.2); /* Alleen de actieve afbeelding krijgt volledige saturatie */
+}
