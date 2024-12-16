@@ -27,7 +27,7 @@
     <script>
         async function fetchWaitingTimes() {
             try {
-                const response = await fetch('http://localhost:5000/api/attraction');
+                const response = await fetch('https://i558324.luna.fhict.nl/api/Attraction/');
                 const data = await response.json();
                 populateWaitingTimes(data);
             } catch (error) {
