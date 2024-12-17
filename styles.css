@@ -5,27 +5,84 @@ html {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Standaard font */
+    background-color: #552607; /* Achtergrondkleur om het bord beter te laten uitkomen */
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 kolommen */
     gap: 0;
-    height: 100vh;
+    height: 90vh; /* Houd ruimte voor het houten bord */
+    width: 90vw;
+    margin: auto;
+    position: relative;
+    margin-top: 18px;
+
+    /* Houtstructuur voor de achtergrond van de container */
+    background: url('/WoodTexture.jpg') center center / cover no-repeat;
+
+    /* Houtstructuur als rand met border-image */
+    border: 30px solid transparent; /* Vereist voor border-image */
+    border-image: url('/WoodTexture.jpg') 30 round; /* Correct gebruik van border-image */
+
+    /* Box-shadow voor extra diepte */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+
+    /* Hoeken afronden */
+    border-radius: 20px;
+
+    /* Zorg dat niets buiten de container steekt */
+    overflow: hidden;
+}
+
+
+/* Verticale scheidingslijn */
+.grid-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Zorg dat de lijn perfect gecentreerd is */
+    width: 30px; /* Breedte van de lijn */
+    height: 100%;
+    background: url('/WoodTexture.jpg') center center / cover no-repeat; /* Houtstructuur */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Schaduw voor een verhoogd effect */
+    z-index: 10; /* Zorg dat de lijn boven de rest ligt */
 }
 
 .grid-item {
     position: relative;
     overflow: hidden;
+    z-index: 2; /* Bovenop het houten bord */
+    border-radius: 10px; /* Geef afbeeldingen afgeronde hoeken */
 }
 
+/* Afbeeldingen */
 .grid-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease; /* Voeg soepele transitie toe */
+    transition: transform 0.5s ease, filter 0.5s ease; /* Soepele transitie */
     cursor: pointer;
+    border-radius: 10px; /* Afgeronde hoeken voor een nette uitstraling */
+}
+
+/* Overlay-tekst */
+.overlay-text {
+    position: absolute;
+    top: 50%; /* Midden van de afbeelding */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Tekstkleur */
+    font-size: 7rem; /* Grootte van de tekst */
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; /* Start onzichtbaar */
+    transition: opacity 0.5s ease; /* Fade-in animatie */
+    pointer-events: none; /* Klikken alleen op de afbeelding, niet op de tekst */
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.9); /* Grote schaduw */
+    text-transform: uppercase; /* Hoofdletters voor een opvallend effect */
 }
 
 /* Hover-effecten */
@@ -38,11 +95,14 @@ html {
     filter: saturate(1) contrast(1.2); /* Zorg dat de geselecteerde afbeelding helder wordt */
 }
 
-/* Maak de rest minder verzadigd wanneer je over een item gaat */
 .grid-container:hover .grid-item img {
     filter: saturate(0.2); /* Verminder de saturatie van alle afbeeldingen */
 }
 
 .grid-container .grid-item img:hover {
     filter: saturate(1) contrast(1.2); /* Alleen de actieve afbeelding krijgt volledige saturatie */
+}
+
+.grid-item:hover .overlay-text {
+    opacity: 1; /* Maak de tekst zichtbaar */
 }
