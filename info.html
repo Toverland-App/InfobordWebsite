@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wachttijden</title>
+    <link rel="stylesheet" href="attracties.css">
     
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
         }
     </style>
 </head>
@@ -24,6 +24,7 @@
     <div class="button-container">
         <button onclick="window.location.href='index.html'">Ga terug</button>
     </div>
+
 
     <script>
         async function fetchWaitingTimes() {
@@ -54,6 +55,8 @@
 
         // Fetch waiting times when the page loads
         window.onload = fetchWaitingTimes;
+
+        
     </script>
 </body>
 </html>
