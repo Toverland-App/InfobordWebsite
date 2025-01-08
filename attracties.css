@@ -40,6 +40,8 @@ header {
 .button-container {
     text-align: center;
     margin-top: 20px;
+    margin-left: 20px;
+    position: fixed;
 }
 
 .button-container button {
