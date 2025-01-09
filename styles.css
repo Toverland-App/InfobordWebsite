@@ -49,6 +49,17 @@ html {
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Schaduw voor een verhoogd effect */
     z-index: 10; /* Zorg dat de lijn boven de rest ligt */
 }
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 kolom op mobiele apparaten */
+    }
+
+    .grid-container::before {
+        display: none; /* Verberg de verticale scheidingslijn op mobiele apparaten */
+    }
+}
 .grid-item {
     position: relative;
     overflow: hidden;
