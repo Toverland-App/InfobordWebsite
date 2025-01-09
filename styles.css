@@ -20,11 +20,11 @@ html {
     margin-top: 18px;
 
     /* Houtstructuur voor de achtergrond van de container */
-    background: url('/WoodTextureSeemless.png') center center / cover no-repeat;
+    background: url('/images/WoodTextureSeemless.png') center center / cover no-repeat;
 
     /* Houtstructuur als rand met border-image */
     border: 30px solid transparent; /* Vereist voor border-image */
-    border-image: url('/WoodTextureSeemless.png') 30 round; /* Correct gebruik van border-image */
+    border-image: url('/images/WoodTextureSeemless.png') 30 round; /* Correct gebruik van border-image */
 
     /* Box-shadow voor extra diepte */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
@@ -45,11 +45,10 @@ html {
     transform: translateX(-50%); /* Zorg dat de lijn perfect gecentreerd is */
     width: 30px; /* Breedte van de lijn */
     height: 100%;
-    background: url('/WoodTextureSeemless.png') center center / cover no-repeat; /* Houtstructuur */
+    background: url('/images/WoodTextureSeemless.png') center center / cover no-repeat; /* Houtstructuur */
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5); /* Schaduw voor een verhoogd effect */
     z-index: 10; /* Zorg dat de lijn boven de rest ligt */
 }
-
 .grid-item {
     position: relative;
     overflow: hidden;
